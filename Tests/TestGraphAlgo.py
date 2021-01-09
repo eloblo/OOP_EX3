@@ -43,6 +43,34 @@ class MyTestCase(unittest.TestCase):
         for i in range(len(check)):
             self.assertEqual(check[i], path[i])
 
+        check = list()
+        dist, path = ga.shortest_path(7, 7)
+        self.assertEqual(dist, 0)
+        for i in range(len(check)):
+            self.assertEqual(check[i], path[i])
+
+        dist, path = ga.shortest_path(8, 5)
+        self.assertEqual(dist, float('inf'))
+        for i in range(len(check)):
+            self.assertEqual(check[i], path[i])
+
+    def test_connected_components(self):
+        g = DiGraph()
+        for i in range(4):
+            g.add_node(i)
+        g.add_edge(1, 2, 2)
+        g.add_edge(2, 1, 1)
+        ga = GraphAlgo(g)
+        check = [1, 2]
+        comp = ga.connected_component(1)
+        for i in range(len(comp)):
+            self.assertEqual(check[i], comp[i])
+        check = [3]
+        comp = ga.connected_component(3)
+        for i in range(len(comp)):
+            self.assertEqual(check[i], comp[i])
+        comp = ga.connected_component(5)
+        self.assertEqual(len(comp), 0)
 
 if __name__ == '__main__':
     unittest.main()

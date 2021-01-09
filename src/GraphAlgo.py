@@ -77,7 +77,32 @@ class GraphAlgo(GraphAlgoInterface):
         return dist, path
 
     def connected_component(self, id1: int) -> list:
-        pass
+        nodes = self.graph.get_all_v()
+        comp = list()
+        if len(nodes) == 0 or nodes.get(id1) is None:
+            return comp
+        self._clear_tag()
+        que = list()
+        que.append(nodes[id1])
+        while len(que) != 0:
+            node = que.pop(0)
+            node.set_tag(1)
+            edges = node.get_edges()
+            for e in edges:
+                if nodes[e].get_tag() == 0:
+                    que.append(nodes[e])
+        que.append(nodes[id1])
+        while len(que) != 0:
+            node = que.pop(0)
+            node.set_tag(2)
+            back_edges = node.get_back_edges()
+            for e in back_edges:
+                if nodes[e].get_tag() == 1:
+                    que.append(nodes[e])
+        for n in nodes:
+            if nodes[n].get_tag == 2:
+                comp.append(n)
+        return comp
 
     def connected_components(self) -> List[list]:
         pass
