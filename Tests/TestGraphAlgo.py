@@ -27,6 +27,22 @@ class MyTestCase(unittest.TestCase):
 
         self.assertEqual(repr(ga1.get_graph()), repr(ga2.get_graph()))
 
+    def test_shortest_path(self):
+        g = DiGraph()
+        for i in range(10):
+            g.add_node(i)
+        for i in range(9):
+            g.add_edge(i, i+1, 1)
+        g.add_edge(0, 9, 100)
+        g.add_edge(0, 6, 3)
+        g.add_edge(6, 8, 2)
+        ga = GraphAlgo(g)
+        dist, path = ga.shortest_path(0, 9)
+        self.assertEqual(dist, 6)
+        check = [0, 6, 8, 9]
+        for i in range(len(check)):
+            self.assertEqual(check[i], path[i])
+
 
 if __name__ == '__main__':
     unittest.main()

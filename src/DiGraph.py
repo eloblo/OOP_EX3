@@ -177,6 +177,9 @@ class DiGraph(GraphInterface):
                 edge_list.append(edge_dict)
             return edge_list
 
+        def __lt__(self, other):
+            return self.weight - other.get_weight()
+
         def __repr__(self):
             info = json.dumps(self.get_node())
             return info

@@ -3,6 +3,7 @@ from typing import List
 from src import GraphInterface
 from src.DiGraph import DiGraph
 from src.GraphAlgoInterface import GraphAlgoInterface
+from queue import PriorityQueue
 
 
 class GraphAlgo(GraphAlgoInterface):
@@ -44,7 +45,36 @@ class GraphAlgo(GraphAlgoInterface):
             return False
 
     def shortest_path(self, id1: int, id2: int) -> (float, list):
-        pass
+        dist = 0
+        path = list()
+        nodes = self.graph.get_all_v()
+        if nodes.get(id1) is not None and nodes.get(id2) is not None:
+            if id1 == id2:
+                return dist, path
+            self._clear_weight()
+            que = PriorityQueue()
+            src = nodes.get(id1)
+            path.append(id1)
+            src.set_path(path)
+            que.put(src)
+            while not que.empty():
+                node = que.get()
+                if id2 == node.get_key():
+                    dist = node.get_weight()
+                    path = node.get_path()
+                    return dist, path
+                edges = node.get_edges()
+                for e in edges:
+                    ni = nodes[e]
+                    dist = node.get_weight() + edges[e]
+                    if (dist < ni.get_weight() or ni.get_weight() == 0) and ni.get_key() != id1:
+                        temp_path = node.get_path().copy()
+                        temp_path.append(e)
+                        ni.set_path(temp_path)
+                        ni.set_weight(dist)
+                        que.put(ni)
+        dist = float('inf')
+        return dist, path
 
     def connected_component(self, id1: int) -> list:
         pass
