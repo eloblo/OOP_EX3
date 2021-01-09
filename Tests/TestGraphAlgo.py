@@ -54,7 +54,7 @@ class MyTestCase(unittest.TestCase):
         for i in range(len(check)):
             self.assertEqual(check[i], path[i])
 
-    def test_connected_components(self):
+    def test_connected_component(self):
         g = DiGraph()
         for i in range(4):
             g.add_node(i)
@@ -71,6 +71,25 @@ class MyTestCase(unittest.TestCase):
             self.assertEqual(check[i], comp[i])
         comp = ga.connected_component(5)
         self.assertEqual(len(comp), 0)
+
+    def test_connected_components(self):
+        g = DiGraph()
+        for i in range(4):
+            g.add_node(i)
+        g.add_edge(1, 2, 2)
+        g.add_edge(2, 1, 1)
+        ga = GraphAlgo(g)
+        check = [[0], [1, 2], [3]]
+        comps = ga.connected_components()
+        for c in range(len(comps)):
+            com = comps[c]
+            for n in range(len(com)):
+                self.assertEqual(com[n], check[c][n])
+        ga.load_from_json("C:\\Users\\User\\PycharmProjects\\Ex3\\Data\\A0")
+        comps = ga.connected_components()
+        com = comps[0]
+        for n in range(len(com)):
+            self.assertEqual(com[n], n)
 
 if __name__ == '__main__':
     unittest.main()

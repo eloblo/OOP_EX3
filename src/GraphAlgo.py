@@ -95,17 +95,28 @@ class GraphAlgo(GraphAlgoInterface):
         while len(que) != 0:
             node = que.pop(0)
             node.set_tag(2)
+            node.set_weight(1)
             back_edges = node.get_back_edges()
             for e in back_edges:
                 if nodes[e].get_tag() == 1:
                     que.append(nodes[e])
         for n in nodes:
-            if nodes[n].get_tag == 2:
+            if nodes[n].get_tag() == 2:
                 comp.append(n)
         return comp
 
     def connected_components(self) -> List[list]:
-        pass
+        nodes = self.graph.get_all_v()
+        comps = list()
+        if len(nodes) == 0:
+            return comps
+        self._clear_weight()
+        for n in nodes:
+            node = nodes[n]
+            if node.get_weight() != 1:
+                com = self.connected_component(n)
+                comps.append(com)
+        return comps
 
     def plot_graph(self) -> None:
         pass
