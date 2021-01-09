@@ -101,10 +101,7 @@ class DiGraph(GraphInterface):
             self.tag = 0
             self.path = list()
             self.weight = 0
-            if pos is None:
-                self.pos = (0, 0, 0)
-            else:
-                self.pos = pos
+            self.pos = pos
             self.edges = dict()
             self.back_edges = dict()
 
@@ -166,8 +163,11 @@ class DiGraph(GraphInterface):
             self.weight = weight
 
         def get_node(self):
-            str_pos = "%d,%d,%d" % (self.pos[0], self.pos[1], self.pos[2])
-            node_dict = {"pos": str_pos, "id": self.key}
+            if self.pos is None:
+                node_dict = {"id": self.key}
+            else:
+                str_pos = "%d,%d,%d" % (self.pos[0], self.pos[1], self.pos[2])
+                node_dict = {"pos": str_pos, "id": self.key}
             return node_dict
 
         def get_edge_list(self):

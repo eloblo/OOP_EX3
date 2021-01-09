@@ -21,13 +21,19 @@ class GraphAlgo(GraphAlgoInterface):
         try:
             json_file = open(file_name, "r")
             info = json_file.read()
+            flag = True
+            if info.find("pos") < 0:
+                flag = False
             graph_dict = json.loads(info)
             new_graph = DiGraph()
             nodes = graph_dict["Nodes"]
             for n in nodes:
-                str_pos = n["pos"]
-                pos = tuple(map(float, str_pos.split(',')))
-                new_graph.add_node(n["id"], pos)
+                if flag:
+                    str_pos = n["pos"]
+                    pos = tuple(map(float, str_pos.split(',')))
+                    new_graph.add_node(n["id"], pos)
+                else:
+                    new_graph.add_node(n["id"])
             edges = graph_dict["Edges"]
             for e in edges:
                 new_graph.add_edge(e["src"], e["dest"], e["w"])

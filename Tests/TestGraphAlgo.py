@@ -24,7 +24,6 @@ class MyTestCase(unittest.TestCase):
 
         ga2 = GraphAlgo(DiGraph())
         ga2.load_from_json("C:\\Users\\User\\PycharmProjects\\Ex3\\Data\\test.json")
-
         self.assertEqual(repr(ga1.get_graph()), repr(ga2.get_graph()))
 
     def test_shortest_path(self):

@@ -30,7 +30,7 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(node_dict.get(2), 20)
 
     def test_json(self):
-        node1 = DiGraph.Node(1,None)
+        node1 = DiGraph.Node(1)
         node2 = DiGraph.Node(2,(1,2,3))
         node1.add_edge(2,2)
         node1.add_edge(3,1)
