@@ -91,5 +91,6 @@ class MyTestCase(unittest.TestCase):
         for n in range(len(com)):
             self.assertEqual(com[n], n)
 
+
 if __name__ == '__main__':
     unittest.main()

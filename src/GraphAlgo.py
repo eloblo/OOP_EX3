@@ -8,8 +8,11 @@ from queue import PriorityQueue
 
 class GraphAlgo(GraphAlgoInterface):
 
-    def __init__(self, graph):
-        self.graph = graph
+    def __init__(self, graph=None):
+        if graph is None:
+            self.graph = DiGraph()
+        else:
+            self.graph = graph
 
     def get_graph(self) -> GraphInterface:
         return self.graph
