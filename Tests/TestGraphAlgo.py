@@ -90,6 +90,18 @@ class MyTestCase(unittest.TestCase):
         for n in range(len(com)):
             self.assertEqual(com[n], n)
 
+    def test_plot(self):
+        g = DiGraph()
+        for i in range(10):
+            g.add_node(i)
+        for i in range(6):
+            g.add_edge(i+1, i+2, (i+1)*10)
+        ga = GraphAlgo(g)
+        ga.plot_graph()
+
+        ga.load_from_json("C:\\Users\\User\\PycharmProjects\\Ex3\\Data\\A5")
+        ga.plot_graph()
+
 
 if __name__ == '__main__':
     unittest.main()

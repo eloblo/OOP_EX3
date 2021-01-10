@@ -162,6 +162,15 @@ class DiGraph(GraphInterface):
         def set_weight(self, weight):
             self.weight = weight
 
+        def set_pos(self, pos):
+            if pos[0] >= 0 and pos[1] >= 0 and pos[2] >= 0:
+                self.pos = pos
+            else:
+                self.pos = (0, 0, 0)
+
+        def get_pos(self):
+            return self.pos
+
         def get_node(self):
             if self.pos is None:
                 node_dict = {"id": self.key}
