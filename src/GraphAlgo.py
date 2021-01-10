@@ -6,7 +6,6 @@ from src.GraphAlgoInterface import GraphAlgoInterface
 from queue import PriorityQueue
 import random
 from matplotlib import pyplot as plt
-from matplotlib.offsetbox import AnchoredText
 
 
 class GraphAlgo(GraphAlgoInterface):
@@ -43,7 +42,7 @@ class GraphAlgo(GraphAlgoInterface):
             self.graph = new_graph
             json_file.close()
             return True
-        except:
+        except IOError:
             return False
 
     def save_to_json(self, file_name: str) -> bool:
@@ -53,7 +52,7 @@ class GraphAlgo(GraphAlgoInterface):
             json_file.write(info)
             json_file.close()
             return True
-        except:
+        except IOError:
             return False
 
     def shortest_path(self, id1: int, id2: int) -> (float, list):
@@ -135,7 +134,6 @@ class GraphAlgo(GraphAlgoInterface):
         min_x, max_x, min_y, max_y = self._set_positions()
         if min_x == max_x or min_y == max_y:
             return
-        print(min_x, max_x, min_y, max_y)
         r = min(max_x - min_x, max_y - min_y)/80
         fig, ax = plt.subplots(figsize=(6, 6))
         for n in nodes:
@@ -148,12 +146,9 @@ class GraphAlgo(GraphAlgoInterface):
             for e in edges:
                 dest = nodes[e]
                 dest_pos = dest.get_pos()
-                ax.annotate("",
-                            xy=(dest_pos[0], dest_pos[1]), xycoords='data',
+                ax.annotate("", xy=(dest_pos[0], dest_pos[1]), xycoords='data',
                             xytext=(pos[0], pos[1]), textcoords='data',
-                            arrowprops=dict(arrowstyle="->",
-                                            connectionstyle="arc3"),
-                            )
+                            arrowprops=dict(arrowstyle="->", connectionstyle="arc3"),)
         r *= 10
         ax.axis([min_x-r, max_x+r, min_y-r, max_y+r])
         plt.show()
@@ -197,3 +192,6 @@ class GraphAlgo(GraphAlgoInterface):
         nodes = self.graph.get_all_v()
         for n in nodes:
             nodes[n].set_weight(0)
+
+    def __repr__(self):
+        return repr(self.graph)
