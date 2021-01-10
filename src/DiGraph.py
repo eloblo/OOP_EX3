@@ -263,7 +263,7 @@ class DiGraph(GraphInterface):
             if self.pos is None:
                 node_dict = {"id": self.key}
             else:
-                str_pos = "%d,%d,%d" % (self.pos[0], self.pos[1], self.pos[2])
+                str_pos = "%.16lf,%.16lf,%.16lf" % (self.pos[0], self.pos[1], self.pos[2])
                 node_dict = {"pos": str_pos, "id": self.key}
             return node_dict
 

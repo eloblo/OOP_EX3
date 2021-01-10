@@ -113,6 +113,13 @@ class MyTestCase(unittest.TestCase):
         ga.load_from_json("C:\\Users\\User\\PycharmProjects\\Ex3\\Data\\G_10_80_0.json")
         ga.plot_graph()
 
+    def test_comp_time(self):
+        ga = GraphAlgo()
+        ga.load_from_json("C:\\Users\\User\\PycharmProjects\\Ex3\\Data\\G_10_80_1.json")
+        ga.connected_components()
+        ga.shortest_path(1, 6)
+        ga.save_to_json("result.json")
+
 
 if __name__ == '__main__':
     unittest.main()
