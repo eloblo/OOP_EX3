@@ -52,11 +52,13 @@ class MyTestCase(unittest.TestCase):
         graph.add_edge(1, 2, 3)
         graph.add_edge(1, 5, 6)
 
+        # estimated values
         check_out = {2: 3, 5: 6}
         edges_out = graph.all_out_edges_of_node(1)
         check_in = {0: 1, 2: 3, 3: 4}
         edges_in = graph.all_in_edges_of_node(1)
 
+        # check every dictionary values
         for e in edges_out:
             self.assertEqual(check_out[e], edges_out[e])
         for e in edges_in:

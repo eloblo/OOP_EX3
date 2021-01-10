@@ -80,6 +80,7 @@ class GraphAlgo(GraphAlgoInterface):
         # check for parameters validity
         if nodes.get(id1) is not None and nodes.get(id2) is not None:
             if id1 == id2:          # in case of receiving the same node
+                path.append(id1)
                 return dist, path
             self._clear_weight()    # clear the previous weight to work on a clean graph
             que = PriorityQueue()   # a queue to hold the nodes with their paths
@@ -107,6 +108,7 @@ class GraphAlgo(GraphAlgoInterface):
                         que.put(ni)
         # if we existed the while loop than there was no path
         dist = float('inf')
+        path = list()
         return dist, path
 
     """Return a list of all the connected nodes of the given node
