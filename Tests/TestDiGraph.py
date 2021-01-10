@@ -3,14 +3,15 @@ from src.DiGraph import DiGraph
 
 
 class MyTestCase(unittest.TestCase):
-    def test_adding(self):
+
+    def test_adding(self):   # try adding nodes and edges check for correct value updates
         graph = DiGraph()
         for i in range(10):
             self.assertTrue(graph.add_node(i))
         for e in range(5):
             self.assertTrue(graph.add_edge(e, e+1, e*10 + 1))
 
-        self.assertFalse(graph.add_edge(1, 1, 100))
+        self.assertFalse(graph.add_edge(1, 1, 100))     # check if invalid addition is ignored
         self.assertFalse(graph.add_edge(5, 80, 10))
         self.assertFalse(graph.add_edge(8, 5, -5))
         self.assertFalse(graph.add_edge(13, 15, 2))
@@ -20,16 +21,17 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(graph.e_size(), 5)
         self.assertEqual(graph.v_size(), 10)
 
-    def test_removing(self):
+    def test_removing(self):    # try removing nodes and edges then check for correct value updates
         graph = DiGraph()
         for i in range(10):
             graph.add_node(i)
         for e in range(5):
             graph.add_edge(e, e + 1, e * 10 + 1)
-        self.assertFalse(graph.remove_edge(8,9))
-        self.assertFalse(graph.remove_edge(0,100))
-        self.assertTrue(graph.remove_edge(4,5))
 
+        self.assertFalse(graph.remove_edge(8, 9))         # check if invalid removal is ignored
+        self.assertFalse(graph.remove_edge(0, 100))
+
+        self.assertTrue(graph.remove_edge(4, 5))
         self.assertEqual(graph.get_mc(), 16)
         self.assertEqual(graph.e_size(), 4)
 
@@ -40,7 +42,7 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(graph.e_size(), 2)
         self.assertEqual(graph.v_size(), 9)
 
-    def test_get_edges(self):
+    def test_get_edges(self):     # check for correct edges' dict values
         graph = DiGraph()
         for i in range(6):
             graph.add_node(i)
@@ -50,9 +52,9 @@ class MyTestCase(unittest.TestCase):
         graph.add_edge(1, 2, 3)
         graph.add_edge(1, 5, 6)
 
-        check_out = {2:3, 5:6}
+        check_out = {2: 3, 5: 6}
         edges_out = graph.all_out_edges_of_node(1)
-        check_in = {0:1, 2:3, 3:4}
+        check_in = {0: 1, 2: 3, 3: 4}
         edges_in = graph.all_in_edges_of_node(1)
 
         for e in edges_out:
