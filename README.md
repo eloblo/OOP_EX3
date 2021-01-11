@@ -1,4 +1,4 @@
-Ex3 Directed Weighted Graph
+#Ex3 Directed Weighted Graph
 
 ##The project
 this project is an implementation of the directed weighted graph structure in python.   
