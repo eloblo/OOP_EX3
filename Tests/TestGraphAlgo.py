@@ -2,7 +2,7 @@ import unittest
 import networkx as nx
 from src.DiGraph import DiGraph
 from src.GraphAlgo import GraphAlgo
-from src.NXJsonReader import NXJsonReader
+from Tests.NXJsonReader import NXJsonReader
 
 
 class MyTestCase(unittest.TestCase):

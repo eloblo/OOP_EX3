@@ -2,7 +2,7 @@ import unittest
 import networkx as nx
 import time
 from src.GraphAlgo import GraphAlgo
-from src.NXJsonReader import NXJsonReader
+from Tests.NXJsonReader import NXJsonReader
 
 # compares the average running time of GraphAlgo to networkx
 
