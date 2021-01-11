@@ -2,7 +2,7 @@
 
 ## The project
 this project is an implementation of the directed weighted graph structure in python.   
-the main focus is to implement the Ex2 java project's graph's classes and
+the main focus is to implement the [Ex2](https://github.com/eloblo/OOP_EX2) java project's graph's classes and
 algorithms to python and compare the performance difference between the two,
 and the already built library of networkx.   
 the project is composed of DiGraph and GraphAlgo classes, a custom json
