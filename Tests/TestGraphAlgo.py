@@ -107,12 +107,31 @@ class MyTestCase(unittest.TestCase):
             com = comps[c]
             for n in range(len(com)):
                 self.assertEqual(com[n], check[c][n])
-        # check correction of values of big graph
-        ga.load_from_json("C:\\Users\\User\\PycharmProjects\\Ex3\\Data\\A0")
+        # check correction of values in a big connected graph
+        ga.load_from_json("C:\\Users\\User\\PycharmProjects\\Ex3\\Data\\A5")
         comps = ga.connected_components()
         com = comps[0]
         for n in range(len(com)):
             self.assertEqual(com[n], n)
+        # check correction against networkx
+        nxr = NXJsonReader()
+        nxr.read("C:\\Users\\User\\PycharmProjects\\Ex3\\data\\G_1000_8000_1.json")
+        nxg = nxr.get_graph()
+        nx_comps = nx.strongly_connected_components(nxg)
+        ga.load_from_json("C:\\Users\\User\\PycharmProjects\\Ex3\\data\\G_1000_8000_1.json")
+        comps = ga.connected_components()
+        comps.sort(reverse=True)
+        print(comps)
+        i = 0
+        # the order of components in nx may vary, different graphs different order
+        for nx_comp in nx_comps:
+            comp = comps[i]
+            i += 1
+            j = 0
+            for nx_node in nx_comp:
+                node = comp[j]
+                j += 1
+                self.assertEqual(node, nx_node)
 
     def test_plot(self):    # test plotting
         g = DiGraph()
