@@ -62,7 +62,7 @@ the class has the following functions:
   of all the edges and all the nodes.
 * repr: return the string of the get_graph() dictionary in the format of a json file.  
 
-##GrapghAlgo
+##GraphAlgo
 GraphAlgo is a class full of functions to manipulate the data of it's given DiGraph
 graph object. the class holds the following functions:
 * get graph: return the current graph.
