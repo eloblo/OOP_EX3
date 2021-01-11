@@ -29,7 +29,13 @@ class MyTestCase(unittest.TestCase):
         # load a new graph from the saved file and compare graphs
         ga2 = GraphAlgo(DiGraph())
         ga2.load_from_json("C:\\Users\\User\\PycharmProjects\\Ex3\\Data\\test.json")
-        self.assertEqual(repr(ga1.get_graph()), repr(ga2.get_graph()))
+        self.assertEqual(repr(ga1), repr(ga2))
+
+        # test on a large graph
+        ga1.load_from_json("C:\\Users\\User\\PycharmProjects\\Ex3\\data\\G_100_800_1.json")
+        self.assertTrue(ga1.save_to_json("C:\\Users\\User\\PycharmProjects\\Ex3\\Data\\test.json"))
+        ga2.load_from_json("C:\\Users\\User\\PycharmProjects\\Ex3\\Data\\test.json")
+        self.assertEqual(repr(ga1), repr(ga2))
 
     def test_shortest_path(self):   # test the shortest path and distance
         g = DiGraph()
@@ -121,7 +127,6 @@ class MyTestCase(unittest.TestCase):
         ga.load_from_json("C:\\Users\\User\\PycharmProjects\\Ex3\\data\\G_1000_8000_1.json")
         comps = ga.connected_components()
         comps.sort(reverse=True)
-        print(comps)
         i = 0
         # the order of components in nx may vary, different graphs different order
         for nx_comp in nx_comps:
