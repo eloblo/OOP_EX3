@@ -276,10 +276,6 @@ class DiGraph(GraphInterface):
                 edge_list.append(edge_dict)
             return edge_list
 
-        """Nodes are measured by their weight, mainly for algorithmic purposes"""
-        def __lt__(self, other):
-            return self.weight - other.get_weight()
-
         """Return a string containing the node's information in a json format
            @return a string containing the node's information in a json format"""
         def __repr__(self):

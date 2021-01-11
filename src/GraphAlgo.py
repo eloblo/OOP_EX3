@@ -83,13 +83,14 @@ class GraphAlgo(GraphAlgoInterface):
                 path.append(id1)
                 return dist, path
             self._clear_weight()    # clear the previous weight to work on a clean graph
-            que = PriorityQueue()   # a queue to hold the nodes with their paths
+            que = list()   # a queue to hold the nodes with their paths
             src = nodes.get(id1)
             path.append(id1)
             src.set_path(path)
-            que.put(src)
-            while not que.empty():
-                node = que.get()
+            que.append(src)
+            while len(que) > 0:
+                que.sort(key=DiGraph.Node.get_weight)
+                node = que.pop(0)
                 if id2 == node.get_key():       # if reached the dest node i found the shortest path
                     dist = node.get_weight()
                     path = node.get_path()
@@ -101,11 +102,13 @@ class GraphAlgo(GraphAlgoInterface):
                     dist = node.get_weight() + edges[e]  # update the current distance
                     # check if we reached a new node or an old node with a better path
                     if (dist < ni.get_weight() or ni.get_weight() == 0) and ni.get_key() != id1:
+                        if dist < ni.get_weight() and ni in que:
+                            que.remove(ni)
                         temp_path = node.get_path().copy()  # copy the stored path and append it
                         temp_path.append(e)
                         ni.set_path(temp_path)   # store the current path
                         ni.set_weight(dist)      # store the dist in the node
-                        que.put(ni)
+                        que.append(ni)
         # if we existed the while loop than there was no path
         dist = float('inf')
         path = list()

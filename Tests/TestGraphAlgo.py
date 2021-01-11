@@ -1,7 +1,8 @@
 import unittest
-
+import networkx as nx
 from src.DiGraph import DiGraph
 from src.GraphAlgo import GraphAlgo
+from src.NXJsonReader import NWXJsonReader
 
 
 class MyTestCase(unittest.TestCase):
@@ -55,6 +56,21 @@ class MyTestCase(unittest.TestCase):
         dist, path = ga.shortest_path(8, 5)    # check for invalid parameters
         self.assertEqual(dist, float('inf'))
         self.assertEqual(len(path), 0)
+
+        # check on a heavy graph against networkx
+
+        nxr = NWXJsonReader()
+        nxr.read("C:\\Users\\User\\PycharmProjects\\Ex3\\data\\G_100_800_1.json")
+        nxg = nxr.get_graph()
+        nx_path = nx.shortest_path(nxg, 3, 73, weight="weight")
+        nx_dist = nx.shortest_path_length(nxg, 3, 73, weight="weight")
+
+        ga = GraphAlgo()
+        ga.load_from_json("C:\\Users\\User\\PycharmProjects\\Ex3\\data\\G_100_800_1.json")
+        dist, path = ga.shortest_path(3, 73)
+
+        self.assertEqual(dist, nx_dist)
+        self.assertEqual(path, nx_path)
 
     def test_connected_component(self):    # test component
         g = DiGraph()
@@ -112,13 +128,6 @@ class MyTestCase(unittest.TestCase):
         # plot big graph with no positions
         ga.load_from_json("C:\\Users\\User\\PycharmProjects\\Ex3\\Data\\G_10_80_0.json")
         ga.plot_graph()
-
-    def test_comp_time(self):
-        ga = GraphAlgo()
-        ga.load_from_json("C:\\Users\\User\\PycharmProjects\\Ex3\\Data\\G_10_80_1.json")
-        ga.connected_components()
-        ga.shortest_path(1, 6)
-        ga.save_to_json("result.json")
 
 
 if __name__ == '__main__':
