@@ -1,6 +1,6 @@
-#Ex3 Directed Weighted Graph
+# Ex3 Directed Weighted Graph
 
-##The project
+## The project
 this project is an implementation of the directed weighted graph structure in python.   
 the main focus is to implement the Ex2 java project's graph's classes and
 algorithms to python and compare the performance difference between the two,
@@ -8,7 +8,7 @@ and the already built library of networkx.
 the project is composed of DiGraph and GraphAlgo classes, a custom json
 loader for networkx graphs, along with Junit test with prebuilt graphs in json files.
 
-##Node
+## Node
 a nested class in DiGraph class, represents a vertex in the graph structure.                              
 holds a unique id, a position as a tuple of x,y,z coordinates, tag, weight, 
 a path list and 2 dictionaries of edges for edges existing him and 
@@ -37,7 +37,7 @@ the class holds the following functions:
 * get/set pos: return the node's position / sets the node's position.
 * repr: represent the node as a json format string of the get node dictionary.
 
-##DiGraph
+## DiGraph
 DiGraph is an implementation of the directed weighted graph structure.       
 the class holds a dictionary of nodes, an edges counter, and a modification
 counter.       
@@ -62,7 +62,7 @@ the class has the following functions:
   of all the edges and all the nodes.
 * repr: return the string of the get_graph() dictionary in the format of a json file.  
 
-##GraphAlgo
+## GraphAlgo
 GraphAlgo is a class full of functions to manipulate the data of it's given DiGraph
 graph object. the class holds the following functions:
 * get graph: return the current graph.
@@ -88,7 +88,7 @@ graph object. the class holds the following functions:
   to create a sterile graph, so the algorithm could work properly. 
 * repr: returns the string of the repr of the current graph.
 
-##Installation
+## Installation
 the project can be easily downloaded using the git clone on the latest commit
 and compiled by the relevant programs (pycharm). 
 
