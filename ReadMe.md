@@ -91,5 +91,3 @@ graph object. the class holds the following functions:
 ##Installation
 the project can be easily downloaded using the git clone on the latest commit
 and compiled by the relevant programs (pycharm). 
-
-
