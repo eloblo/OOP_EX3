@@ -2,7 +2,7 @@ import unittest
 import networkx as nx
 from src.DiGraph import DiGraph
 from src.GraphAlgo import GraphAlgo
-from src.NXJsonReader import NWXJsonReader
+from src.NXJsonReader import NXJsonReader
 
 
 class MyTestCase(unittest.TestCase):
@@ -59,7 +59,7 @@ class MyTestCase(unittest.TestCase):
 
         # check on a heavy graph against networkx
 
-        nxr = NWXJsonReader()
+        nxr = NXJsonReader()
         nxr.read("C:\\Users\\User\\PycharmProjects\\Ex3\\data\\G_100_800_1.json")
         nxg = nxr.get_graph()
         nx_path = nx.shortest_path(nxg, 3, 73, weight="weight")
