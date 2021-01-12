@@ -140,7 +140,7 @@ class DiGraph(GraphInterface):
     class Node:
 
         """Create a node with its unique id"""
-        def __init__(self, key, pos=None):
+        def __init__(self, key, pos: tuple = None):
             self.key = key
             self.edges = dict()
             self.back_edges = dict()
@@ -215,7 +215,7 @@ class DiGraph(GraphInterface):
 
         """Sets a new path list to the node, mainly for algorithmic purposes
            @param path: the new list, if is empty resets the path"""
-        def set_path(self, path=None):
+        def set_path(self, path: list = None):
             if path is None:
                 self.path = list()
             else:
@@ -248,7 +248,7 @@ class DiGraph(GraphInterface):
 
         """Sets a new position to the node,
            @param pos: a tuple of x,y,z coordinates"""
-        def set_pos(self, pos):
+        def set_pos(self, pos: tuple):
             self.pos = pos
 
         """Returns the position of the node
@@ -263,11 +263,13 @@ class DiGraph(GraphInterface):
             if self.pos is None:
                 node_dict = {"id": self.key}
             else:
-                str_pos = "%.16lf,%.16lf,%.16lf" % (self.pos[0], self.pos[1], self.pos[2])
+                temp_pos = (str(x) for x in self.pos)
+                str_pos = ','.join(temp_pos)
                 node_dict = {"pos": str_pos, "id": self.key}
             return node_dict
 
         """Return a list containing dictionaries of edges
+           the dictionary format is {"src": src node id, "w": weight, "dest": dest node id}
            @return a list containing dictionaries of edges"""
         def get_edge_list(self):
             edge_list = []

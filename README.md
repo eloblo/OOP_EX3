@@ -14,27 +14,27 @@ holds a unique id, a position as a tuple of x,y,z coordinates, tag, weight,
 a path list and 2 dictionaries of edges for edges existing him and 
 back_edges for edges entering him.      
 the class holds the following functions:
-* add edge: creates an edge with the given weight, while this node is the source
-  if the edge already exist, does nothing. return if the addition was successful.
+* add edge: creates an edge with the given weight. this node will be the source.
+  if the edge already exist, does nothing. return if the edge was added.
 * add back edge: creates an edge with the given weight,
   while this node is the destination, if the edge doesn't exist, does nothing.    
-  return if the addition was successful.
+  return if the edge was added.
 * remove edge: remove the edge starting in this node to the given node,
- if the edge already exist, does nothing. return if the removal was successful.
+ if the edge doesn't exist, does nothing. return if the edge was removed.
 * remove back edge: remove the edge ending in this node from the given node,
- if the edge doesn't exist, does nothing. return if the removal was successful.
+ if the edge doesn't exist, does nothing. return if the edge was removed.
 * get edges: returns a dictionary of all the edges exiting the node, 
-  when the destination node id is the key, and the edge's weight is the value.
+  the destination node's id is the key, and the edge's weight is the value.
 * get back edges: returns a dictionary of all the edges entering the node, 
-  when the destination node id is the key, and the edge's weight is the value.
-* get node: return a dictionary containing the node's id and position.
+  the destination node id is the key, and the edge's weight is the value.
+* get node: returns a dictionary containing the node's id and position.
 * get edges list: return a list of dictionaries containing the edges' information.  
 * get/set path: return the path / set a new path. if the parameter is none,
   path will be set to an empty list.
 * append path: add the given node id to the end of this node's the path.
 * get/set tag: return the node's tag / sets the node's tag.
 * get/set weight: return the node's weight / sets the node's weight.
-* get/set pos: return the node's position / sets the node's position.
+* get/set pos: returns the node's position / sets the node's position.
 * repr: represent the node as a json format string of the get node dictionary.
 
 ## DiGraph
@@ -42,9 +42,9 @@ DiGraph is an implementation of the directed weighted graph structure.
 the class holds a dictionary of nodes, an edges counter, and a modification
 counter.       
 the class has the following functions:
-* v size: return the numbers of nodes in the graph.
-* e size: return the numbers of edges in the graph.
-* get mc: return the numbers of changes done to the graph.
+* v size: returns the numbers of nodes in the graph.
+* e size: returns the numbers of edges in the graph.
+* get mc: returns the numbers of changes done to the graph.
 * add node: adds a new node to the graph with the given key.
   if the node already exist, does nothing. return if the addition was successful.
 * remove node: removes the given node. return if the removal was successful.
@@ -54,9 +54,9 @@ the class has the following functions:
   if the edge already exist, does nothing. return if the addition was successful.
 * remove edge: removes the edge between the given nodes. return if the removal
   was successful. if the edge didn't exist, does nothing.
-* all in edges of: return a dictionary containing all the edges ending
+* all in edges of: returns a dictionary containing all the edges ending
   in the given node.
-* all out edges of: return a dictionary containing all the edges starting
+* all out edges of: returns a dictionary containing all the edges starting
   in the given node.
 * get graph: returns a dictionary containing 2 lists
   of all the edges and all the nodes.
