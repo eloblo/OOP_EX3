@@ -77,7 +77,8 @@ graph object. the class holds the following functions:
   connected component, that the given node is a part of.
 * connected components: returns a list containing the lists of all the strongly
   connected components.
-* plot graph: utilizes matplotlib to plot the graph on a GUI.
+* plot graph: utilizes [matplotlib](https://matplotlib.org/3.3.3/api/index.html)
+  to plot the graph on a GUI.
 * set positions: calculates and return the range of the graph's nodes positions
   on the x y axis. if the graph's nodes don't have positions,
   the function create random ones according to current nodes' range.
