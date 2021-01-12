@@ -3,7 +3,6 @@ from typing import List
 from src import GraphInterface
 from src.DiGraph import DiGraph
 from src.GraphAlgoInterface import GraphAlgoInterface
-from queue import PriorityQueue
 import random
 from matplotlib import pyplot as plt
 
@@ -56,31 +55,12 @@ class GraphAlgo(GraphAlgoInterface):
             return False
 
     """Save the graph info to a json file for later use
-       @param file_name: the path to the file from the root"""
+       @param file_name: the path to the file from the root
+       @return if the graph was successfully saved"""
     def save_to_json(self, file_name: str) -> bool:
         try:
             json_file = open(file_name, "w")    # open the file
-            node_list = []
-            edges_list = []
-            nodes = self.graph.get_all_v()
-            for n in nodes:
-                node = nodes[n]
-                pos = node.get_pos()
-                if pos is None:
-                    node_dict = {"id": n}
-                else:
-                    temp_pos = (str(x) for x in pos)
-                    str_pos = ','.join(temp_pos)
-                    node_dict = {"pos": str_pos, "id": n}
-                node_list.append(node_dict)
-                edges = node.get_edges()
-                edge_list = []
-                for e in edges:
-                    edge_dict = {"src": n, "w": edges[e], "dest": e}
-                    edge_list.append(edge_dict)
-                edges_list.extend(edge_list)
-            graph_dict = {"Edges": edges_list, "Nodes": node_list}
-            info = json.dumps(graph_dict)
+            info = json.dumps(self.graph.get_graph())  # converts the graph's dictionary to json string
             json_file.write(info)
             json_file.close()
             return True

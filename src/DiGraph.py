@@ -221,11 +221,6 @@ class DiGraph(GraphInterface):
             else:
                 self.path = path
 
-        """Appends the path list with the new key
-           @param key: the key of the new node"""
-        def append_path(self, key):
-            self.path.append(key)
-
         """Returns the tag of the node, mainly for algorithmic purposes
            @return the tag of the node"""
         def get_tag(self):

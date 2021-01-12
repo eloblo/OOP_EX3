@@ -46,14 +46,14 @@ the class has the following functions:
 * e size: returns the numbers of edges in the graph.
 * get mc: returns the numbers of changes done to the graph.
 * add node: adds a new node to the graph with the given key.
-  if the node already exist, does nothing. return if the addition was successful.
-* remove node: removes the given node. return if the removal was successful.
+  if the node already exist, does nothing. returns if the node was added.
+* remove node: removes the given node. returns if the node was removed.
   if the node didn't exist, does nothing.
 * get all v: return a dictionary containing all the graph's nodes.
 * add edge: create an edge between the 2 given nodes, weighing the given weight.
-  if the edge already exist, does nothing. return if the addition was successful.
-* remove edge: removes the edge between the given nodes. return if the removal
-  was successful. if the edge didn't exist, does nothing.
+  if the edge already exist, does nothing. return if the edge was added.
+* remove edge: removes the edge between the given nodes. return if the edge
+  was removed. if the edge didn't exist, does nothing.
 * all in edges of: returns a dictionary containing all the edges ending
   in the given node.
 * all out edges of: returns a dictionary containing all the edges starting
