@@ -150,7 +150,7 @@ class GraphAlgo(GraphAlgoInterface):
         # check every node if it part of the connected component and add it to the list
         for n in nodes:
             if nodes[n].get_tag() == 2:
-                comp.append(n)
+                comp.append(nodes[n])
         return comp
 
     """Return a list of lists of all the connected components

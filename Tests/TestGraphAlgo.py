@@ -89,12 +89,12 @@ class MyTestCase(unittest.TestCase):
         check = [1, 2]
         comp = ga.connected_component(1)
         for i in range(len(comp)):
-            self.assertEqual(check[i], comp[i])
+            self.assertEqual(check[i], comp[i].get_key())
         # check correction of the return values of single node component
         check = [3]
         comp = ga.connected_component(3)
         for i in range(len(comp)):
-            self.assertEqual(check[i], comp[i])
+            self.assertEqual(check[i], comp[i].get_key())
         # # check correction of the return values invalid parameters
         comp = ga.connected_component(5)
         self.assertEqual(len(comp), 0)
@@ -112,31 +112,41 @@ class MyTestCase(unittest.TestCase):
         for c in range(len(comps)):
             com = comps[c]
             for n in range(len(com)):
-                self.assertEqual(com[n], check[c][n])
+                self.assertEqual(com[n].get_key(), check[c][n])
         # check correction of values in a big connected graph
         ga.load_from_json("C:\\Users\\User\\PycharmProjects\\Ex3\\Data\\A5")
         comps = ga.connected_components()
         com = comps[0]
         for n in range(len(com)):
-            self.assertEqual(com[n], n)
+            self.assertEqual(com[n].get_key(), n)
         # check correction against networkx
         nxr = NXJsonReader()
-        nxr.read("C:\\Users\\User\\PycharmProjects\\Ex3\\data\\G_1000_8000_1.json")
+        nxr.read("C:\\Users\\User\\PycharmProjects\\Ex3\\data\\G_10000_80000_1.json")
         nxg = nxr.get_graph()
         nx_comps = nx.strongly_connected_components(nxg)
-        ga.load_from_json("C:\\Users\\User\\PycharmProjects\\Ex3\\data\\G_1000_8000_1.json")
+        ga.load_from_json("C:\\Users\\User\\PycharmProjects\\Ex3\\data\\G_10000_8000_1.json")
         comps = ga.connected_components()
-        comps.sort(reverse=True)
-        i = 0
-        # the order of components in nx may vary, different graphs different order
-        for nx_comp in nx_comps:
-            comp = comps[i]
-            i += 1
-            j = 0
-            for nx_node in nx_comp:
-                node = comp[j]
-                j += 1
-                self.assertEqual(node, nx_node)
+        # convert the returned values to list of lists of integers
+        nx_list = list()
+        ga_list = list()
+        for nxc in nx_comps:
+            sub_list = list()
+            for n in nxc:
+                sub_list.append(n)
+            sub_list.sort()
+            nx_list.append(sub_list)
+        for c in comps:
+            sub_list = list()
+            for n in c:
+                sub_list.append(n.get_key())
+            sub_list.sort()
+            ga_list.append(sub_list)
+        # sort and compare results
+        ga_list.sort()
+        nx_list.sort()
+        for sub in range(len(ga_list)):
+            for n in range(len(ga_list[sub])):
+                self.assertEqual(ga_list[sub][n], nx_list[sub][n])
 
     def test_plot(self):    # test plotting
         g = DiGraph()
