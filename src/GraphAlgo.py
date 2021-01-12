@@ -115,7 +115,7 @@ class GraphAlgo(GraphAlgoInterface):
         return dist, path
 
     """Return a list of all the connected nodes of the given node
-       utilizes the Kosaraju algorithm
+       utilizes a BFS version of Kosaraju algorithm 
        @param id1: the id of the given node
        @return a list of all the connected nodes of the given node"""
     def connected_component(self, id1: int) -> list:

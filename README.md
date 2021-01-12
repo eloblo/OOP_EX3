@@ -31,7 +31,6 @@ the class holds the following functions:
 * get edges list: return a list of dictionaries containing the edges' information.  
 * get/set path: return the path / set a new path. if the parameter is none,
   path will be set to an empty list.
-* append path: add the given node id to the end of this node's the path.
 * get/set tag: return the node's tag / sets the node's tag.
 * get/set weight: return the node's weight / sets the node's weight.
 * get/set pos: returns the node's position / sets the node's position.
