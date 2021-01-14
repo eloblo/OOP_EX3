@@ -38,7 +38,7 @@ class MyTestCase(unittest.TestCase):
         self.assertFalse(graph.remove_node(100))
         self.assertTrue(graph.remove_node(2))
 
-        self.assertEqual(graph.get_mc(), 19)
+        self.assertEqual(graph.get_mc(), 17)
         self.assertEqual(graph.e_size(), 2)
         self.assertEqual(graph.v_size(), 9)
 
